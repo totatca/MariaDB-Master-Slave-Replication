@@ -1,0 +1,32 @@
+### Replace  #Hostname = Your-Hostname #IP = Your-IP
+
+### on Master Server ###
+
+bind-address = IP-Master-Server
+server-id=1
+report_host=Hostname-Master-Server
+#
+log_bin=/var/log/mysql/mariadb-bin
+log_bin_index=/var/log/mysql/mariadb-bin.index
+#
+relay_log=/var/log/mysql/relay-bin
+relay_log_index=/var/log/mysql/relay-bin.index
+
+### on Master Server ###
+
+bind-address = IP-Slave-Server
+server-id=2
+report_host=Hostname-Slave-Server
+#
+log_bin=/var/log/mysql/mariadb-bin
+log_bin_index=/var/log/mysql/mariadb-bin.index
+expire-logs-days=10
+read_only=1
+
+###
+change master to
+master_host='IP-of-Master',
+master_user='Your-Username',
+master_password='Your-Password',
+master_log_file='Your-File-Name',
+master_log_pos=You-Number;
